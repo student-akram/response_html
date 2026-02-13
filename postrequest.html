@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Add Product</h2>
+
+  <form onsubmit="sendData(event)">
+    
+    <label for="product">Product Name</label>
+    <input type="text" id="product" name="productName" required>
+
+    <br><br>
+
+    <button type="submit">Add Product</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    function sendData(event){
+      event.preventDefault();
+
+      const product = document.getElementById("product").value;
+
+      axios.post("/api/products", {
+        productName: product
+      })
+      .then(res => alert(res.data))
+      .catch(err => console.log(err));
+    }
+  </script>
+</body>
+</html>
